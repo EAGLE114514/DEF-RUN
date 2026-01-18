@@ -1,0 +1,21 @@
+{
+  "name": "跑步截图生成器",
+  "short_name": "跑步截图",
+  "description": "自定义生成Keep风格的跑步记录截图",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F5F5F5",
+  "theme_color": "#00B074",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
