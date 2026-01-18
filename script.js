@@ -441,4 +441,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // 初始化
     initUI();
     getRandomBottomText();
+
 });
+// 注册Service Worker（支持离线访问）
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('service-worker.js')
+      .then(registration => {
+        console.log('ServiceWorker注册成功:', registration.scope);
+      })
+      .catch(error => {
+        console.log('ServiceWorker注册失败:', error);
+      });
+  });
+}
