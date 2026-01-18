@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>跑步截图生成器</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 标题区域 -->
+        <header class="header">
+            <h1><i class="fas fa-running"></i> 跑步截图生成器</h1>
+            <p class="subtitle">自定义颜色、排版、布局、比例 | 提示：选择时可直接回车使用默认值</p>
+        </header>
+
+        <div class="main-content">
+            <!-- 左侧输入区域 -->
+            <div class="input-section">
+                <div class="card">
+                    <h2><i class="fas fa-running"></i> 跑步数据</h2>
+                    
+                    <div class="input-group">
+                        <label for="distance">
+                            <i class="fas fa-route"></i> 跑步距离 (公里)
+                        </label>
+                        <input type="number" id="distance" step="0.01" min="0.1" value="5.0" placeholder="例如: 5.0">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label><i class="fas fa-clock"></i> 跑步时间</label>
+                        <div class="time-inputs">
+                            <div class="time-input">
+                                <input type="number" id="hours" min="0" max="23" value="0" placeholder="时">
+                                <span>小时</span>
+                            </div>
+                            <div class="time-input">
+                                <input type="number" id="minutes" min="0" max="59" value="30" placeholder="分">
+                                <span>分钟</span>
+                            </div>
+                            <div class="time-input">
+                                <input type="number" id="seconds" min="0" max="59" value="0" placeholder="秒">
+                                <span>秒钟</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="calculate-buttons">
+                        <button id="calc-pace" class="btn-secondary">
+                            <i class="fas fa-calculator"></i> 根据距离和时间计算配速
+                        </button>
+                        <button id="calc-time" class="btn-secondary">
+                            <i class="fas fa-calculator"></i> 根据距离和配速计算时间
+                        </button>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="pace-display">
+                            <i class="fas fa-tachometer-alt"></i> 配速 (分钟/公里)
+                        </label>
+                        <div class="pace-inputs">
+                            <div class="pace-input">
+                                <input type="number" id="pace-min" min="0" value="6" placeholder="分">
+                                <span>分</span>
+                            </div>
+                            <div class="pace-input">
+                                <input type="number" id="pace-sec" min="0" max="59" value="0" placeholder="秒">
+                                <span>秒</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 配置区域 -->
+                <div class="card config-section">
+                    <h2><i class="fas fa-palette"></i> 样式配置</h2>
+                    
+                    <div class="config-group">
+                        <label for="theme-select">
+                            <i class="fas fa-fill-drip"></i> 颜色主题
+                        </label>
+                        <select id="theme-select">
+                            <option value="keep_green">Keep经典绿 (默认)</option>
+                            <option value="blue_ocean">蓝色海洋</option>
+                            <option value="sunset">日落黄昏</option>
+                            <option value="dark">深色模式</option>
+                            <option value="pink">粉红主题</option>
+                            <option value="red">热情红</option>
+                            <option value="yellow">活力黄</option>
+                        </select>
+                    </div>
+                    
+                    <div class="config-group">
+                        <label for="spacing-select">
+                            <i class="fas fa-text-height"></i> 排版风格
+                        </label>
+                        <select id="spacing-select">
+                            <option value="compact">紧凑</option>
+                            <option value="normal" selected>适中 (默认)</option>
+                            <option value="spacious">宽松</option>
+                        </select>
+                    </div>
+                    
+                    <div class="config-group">
+                        <label for="layout-select">
+                            <i class="fas fa-th"></i> 布局位置
+                        </label>
+                        <select id="layout-select">
+                            <option value="time_top" selected>时间在上 (默认)</option>
+                            <option value="pace_top">配速在上</option>
+                            <option value="vertical">竖直紧凑</option>
+                            <option value="side_by_side">并排显示 (适合宽屏)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="config-group">
+                        <label for="size-select">
+                            <i class="fas fa-expand-alt"></i> 画布比例
+                        </label>
+                        <select id="size-select">
+                            <option value="iphone15" selected>iPhone 15竖屏 (1179x2556) (默认)</option>
+                            <option value="square">正方形 (1000x1000)</option>
+                            <option value="wide">宽屏 (1600x900)</option>
+                            <option value="portrait">竖屏 (800x1200)</option>
+                            <option value="landscape">横屏 (1200x800)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="config-group checkbox-group">
+                        <label>
+                            <input type="checkbox" id="show-status" checked>
+                            <i class="fas fa-mobile-alt"></i> 显示状态栏
+                        </label>
+                    </div>
+                    
+                    <div class="config-group checkbox-group">
+                        <label>
+                            <input type="checkbox" id="show-bottom-text" checked>
+                            <i class="fas fa-font"></i> 显示底部文字
+                        </label>
+                    </div>
+                    
+                    <div class="config-group">
+                        <label for="bottom-text-input">
+                            <i class="fas fa-quote-right"></i> 底部文字
+                        </label>
+                        <input type="text" id="bottom-text-input" placeholder="随机选择，点击右侧按钮更换">
+                        <button id="random-text" class="btn-small">
+                            <i class="fas fa-random"></i> 随机
+                        </button>
+                    </div>
+                    
+                    <div class="advanced-config">
+                        <h3><i class="fas fa-sliders-h"></i> 高级设置</h3>
+                        
+                        <div class="config-row">
+                            <div class="config-group half">
+                                <label for="card-radius">
+                                    <i class="fas fa-square-rounded"></i> 圆角半径
+                                </label>
+                                <input type="range" id="card-radius" min="0" max="50" value="25">
+                                <span id="radius-value">25</span>
+                            </div>
+                            
+                            <div class="config-group half">
+                                <label for="card-border">
+                                    <i class="fas fa-border-style"></i> 边框粗细
+                                </label>
+                                <input type="range" id="card-border" min="0" max="10" value="3">
+                                <span id="border-value">3</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 生成按钮 -->
+                <div class="action-buttons">
+                    <button id="generate-btn" class="btn-primary">
+                        <i class="fas fa-camera"></i> 生成跑步截图
+                    </button>
+                    <button id="preview-btn" class="btn-secondary">
+                        <i class="fas fa-eye"></i> 预览
+                    </button>
+                    <button id="reset-btn" class="btn-tertiary">
+                        <i class="fas fa-redo"></i> 重置为默认
+                    </button>
+                </div>
+            </div>
+            
+            <!-- 右侧预览区域 -->
+            <div class="preview-section">
+                <div class="card">
+                    <h2><i class="fas fa-image"></i> 预览区域</h2>
+                    <p class="preview-info">配置完成后点击"预览"按钮查看效果</p>
+                    
+                    <div class="canvas-container">
+                        <canvas id="preview-canvas"></canvas>
+                    </div>
+                    
+                    <div class="preview-controls">
+                        <div class="preview-size">
+                            <span>画布尺寸: <span id="canvas-size">1179×2556</span> 像素</span>
+                        </div>
+                        
+                        <div class="preview-actions">
+                            <button id="download-btn" class="btn-primary" disabled>
+                                <i class="fas fa-download"></i> 下载截图
+                            </button>
+                            <button id="copy-btn" class="btn-secondary" disabled>
+                                <i class="fas fa-copy"></i> 复制到剪贴板
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="status-area">
+                        <div id="status-message">就绪</div>
+                        <div id="file-info"></div>
+                    </div>
+                </div>
+                
+                <!-- 当前配置信息 -->
+                <div class="card current-config">
+                    <h2><i class="fas fa-cog"></i> 当前配置</h2>
+                    <div class="config-info">
+                        <div class="info-row">
+                            <span class="info-label">颜色主题:</span>
+                            <span id="current-theme" class="info-value">Keep经典绿</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">排版风格:</span>
+                            <span id="current-spacing" class="info-value">适中</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">布局位置:</span>
+                            <span id="current-layout" class="info-value">时间在上</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">画布比例:</span>
+                            <span id="current-size" class="info-value">iPhone 15竖屏</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">跑步数据:</span>
+                            <span id="current-data" class="info-value">5.0公里, 00:30:00, 6'00"/公里</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 底部信息 -->
+        <footer class="footer">
+            <p>跑步截图生成器 v2.0 | 使用HTML5 Canvas生成 | 支持自定义颜色、排版、布局和比例</p>
+            <p class="tips">
+                <i class="fas fa-lightbulb"></i> 
+                提示: 1) 先输入跑步数据 2) 调整样式配置 3) 点击"预览"查看效果 4) 点击"生成跑步截图"保存
+            </p>
+        </footer>
+    </div>
+
+    <!-- 脚本文件 -->
+    <script src="screenshot.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

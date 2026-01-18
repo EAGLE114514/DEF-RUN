@@ -1,0 +1,405 @@
+/* 基础样式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    color: #333;
+    line-height: 1.6;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+/* 标题区域 */
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.header h1 {
+    color: #00B074;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.header .subtitle {
+    color: #666;
+    font-size: 1.1rem;
+}
+
+/* 主要内容区域 */
+.main-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.input-section, .preview-section {
+    flex: 1;
+    min-width: 300px;
+}
+
+/* 卡片样式 */
+.card {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.card h2 {
+    color: #333;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #00B074;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* 输入组样式 */
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #444;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.input-group input[type="number"],
+.input-group input[type="text"],
+.input-group select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    outline: none;
+    border-color: #00B074;
+    box-shadow: 0 0 0 3px rgba(0, 176, 116, 0.1);
+}
+
+/* 时间和配速输入布局 */
+.time-inputs, .pace-inputs {
+    display: flex;
+    gap: 15px;
+}
+
+.time-input, .pace-input {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.time-input input, .pace-input input {
+    flex: 1;
+    text-align: center;
+}
+
+.time-input span, .pace-input span {
+    color: #666;
+    min-width: 40px;
+}
+
+/* 按钮样式 */
+.btn-primary, .btn-secondary, .btn-tertiary, .btn-small {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(to right, #00B074, #00A36C);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(to right, #00A36C, #009A63);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 176, 116, 0.3);
+}
+
+.btn-secondary {
+    background: #f0f0f0;
+    color: #333;
+    border: 1px solid #ddd;
+}
+
+.btn-secondary:hover {
+    background: #e0e0e0;
+    transform: translateY(-2px);
+}
+
+.btn-tertiary {
+    background: transparent;
+    color: #666;
+    border: 1px solid #ddd;
+}
+
+.btn-tertiary:hover {
+    background: #f9f9f9;
+    color: #333;
+}
+
+.btn-small {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+/* 计算按钮区域 */
+.calculate-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+/* 配置区域 */
+.config-group {
+    margin-bottom: 15px;
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 8px 0;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #00B074;
+}
+
+.config-row {
+    display: flex;
+    gap: 15px;
+}
+
+.half {
+    flex: 1;
+}
+
+/* 高级设置 */
+.advanced-config {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.advanced-config h3 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: #555;
+}
+
+input[type="range"] {
+    width: 100%;
+    margin: 10px 0;
+    accent-color: #00B074;
+}
+
+/* 操作按钮区域 */
+.action-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* 预览区域 */
+.preview-info {
+    color: #666;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+.canvas-container {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed #ddd;
+}
+
+#preview-canvas {
+    max-width: 100%;
+    max-height: 400px;
+    border-radius: 6px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 预览控制区域 */
+.preview-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.preview-size {
+    font-weight: 600;
+    color: #444;
+}
+
+.preview-actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* 状态区域 */
+.status-area {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+#status-message {
+    font-weight: 600;
+    color: #00B074;
+}
+
+#file-info {
+    color: #666;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+/* 当前配置信息 */
+.current-config .config-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.info-row:last-child {
+    border-bottom: none;
+}
+
+.info-label {
+    font-weight: 600;
+    color: #555;
+}
+
+.info-value {
+    color: #333;
+    text-align: right;
+    max-width: 70%;
+}
+
+/* 底部区域 */
+.footer {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+    font-size: 0.9rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.footer .tips {
+    margin-top: 10px;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    font-style: italic;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* 响应式设计 */
+@media (max-width: 1200px) {
+    .main-content {
+        flex-direction: column;
+    }
+    
+    .time-inputs, .pace-inputs {
+        flex-direction: column;
+    }
+    
+    .config-row {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 2rem;
+    }
+    
+    .card {
+        padding: 20px;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+    }
+    
+    .preview-controls {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
